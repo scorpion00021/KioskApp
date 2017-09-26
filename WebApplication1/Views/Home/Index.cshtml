@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="splash">
+    <img src="~/Content/Images/RSILogo.jpg" />
+    <span class="underLogo">Touch anywhere to begin.</span>
+</div>
+
+<script>
+    $("body").click(function () {
+        window.location.href = "/Home/WhatNext";
+    })
+</script>

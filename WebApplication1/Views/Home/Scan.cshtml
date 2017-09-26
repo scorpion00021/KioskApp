@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    #container {
+        margin: 0px auto;
+        width: 500px;
+        height: 375px;
+        border: 10px #333 solid;
+    }
+
+    #videoElement {
+        width: 500px;
+        height: 375px;
+        background-color: #666;
+    }
+</style>
+
+<div class="splash">
+        <div id="container">
+        <video autoplay="true" id="videoElement"></video>
+    </div>
+</div>
+
+<button onclick="readCam()">TEST</button>
+
+<script>
+    $(document).ready(function(){
+        //scanForCode();   
+    })
+
+    var canvas = document.createElement('canvas');
+    var interval;
+    var video = document.querySelector("#videoElement");
+    var scaleFactor = .25;
+
+    function scanForCode() {
+        interval = setInterval(readCam, 500);
+    }
+
+    function readCam() {
+        //take image from camera pane, ajax to server, await success/fail
+        canvas = capture(video, scaleFactor);
+
+        dataURL = canvas.toDataURL('image/png');
+        checkImage(dataURL);
+    }
+
+    function capture(video, scaleFactor) {
+        if (scaleFactor == null) {
+            scaleFactor = 1;
+        }
+        var w = video.videoWidth * scaleFactor;
+        var h = video.videoHeight * scaleFactor;
+        
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, w, h);
+        return canvas;
+    }
+
+
+    function checkImage(dataURL) {
+        $.ajax({
+            type: "POST",
+            url: "CheckBarcode",
+            data: {
+                imgBase64: dataURL
+            },
+            dataType: 'json',
+            traditional: true,
+            success: function (response) {
+                console.log(response.responseText);
+            },
+            error: function (xhr) {
+                alert('An error occured while processing your request.')
+            },
+        });
+    }
+
+    
+
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia({ video: true }, handleVideo, videoError);
+    }
+
+    function handleVideo(stream) {
+        video.src = window.URL.createObjectURL(stream);
+    }
+
+    function videoError(e) {
+        alert("A terrible thing happened.")
+    }
+</script>

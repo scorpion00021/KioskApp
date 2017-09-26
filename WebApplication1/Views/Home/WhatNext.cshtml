@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="splash">
+    <a href="@Url.Action("Appointment", "Home")">
+        <div class="navIcon">
+            <img src="~/Content/Images/iconmonstr-calendar-6-240.png" />
+            <span>Have Appointment</span>
+        </div>
+    </a>
+    <a href="@Url.Action("FindUser", "Home")">
+        <div class="navIcon">
+            <img src="~/Content/Images/iconmonstr-user-29-240.png" />
+            <span>Find a Colleague</span>
+        </div>
+    </a>
+    <a href="@Url.Action("Scan", "Home")">
+        <div class="navIcon">
+            <img src="~/Content/Images/iconmonstr-qr-code-3-240.png" />
+            <span>Scan QR Code</span>
+        </div>
+    </a>
+        <div class="navIcon"></div>
+        <div class="navIcon"></div>
+</div>
+
+<script>
+
+</script>
