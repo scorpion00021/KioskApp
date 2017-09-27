@@ -16,6 +16,8 @@ using ZXing.PDF417.Internal;
 using ZXing.QrCode.Internal;
 using ZXing.Rendering;
 using System.Text.RegularExpressions;
+using WebApplication1.Models;
+using WebApplication1.Utilities;
 
 namespace WebApplication1.Controllers
 {
@@ -27,6 +29,8 @@ namespace WebApplication1.Controllers
             TryInverted = true,
             Options = new DecodingOptions { TryHarder = true }
         };
+
+        private List<Employee> employees = MockUtilities.GenerateMockEmployeeList();
 
         public ActionResult Index()
         {
@@ -55,6 +59,19 @@ namespace WebApplication1.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Appointment()
+        {
+
+            return View();
+        }
+
+        public ActionResult FindUser()
+        {
+            var model = new FindUserViewModel();
+            model.Employees = employees;
+            return View(model);
         }
 
         [HttpPost]
@@ -90,5 +107,7 @@ namespace WebApplication1.Controllers
                 return "";
             }
         }
+
+
     }
 }

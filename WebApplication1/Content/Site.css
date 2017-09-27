@@ -23,6 +23,7 @@ textarea {
     max-width: 280px;
 }
 .splash{
+    margin: 20px;
     text-align: center;
 }
 .splash img{
@@ -46,3 +47,52 @@ div.navIcon{
     div.navIcon img {
         width: 100px;
     }
+
+.scanbutton{
+    margin-top: 50px;
+    display: none;
+}
+    #container {
+        margin: 0px auto;
+        width: 500px;
+        height: 375px;
+        
+    }
+
+    #videoElement {
+        width: 500px;
+        height: 375px;
+        background-color: #666;
+        border: 10px #333 solid;
+    }
+
+    div.employeeBox{
+    width: 300px;
+    border: 2px solid #999;
+    padding: 2px;
+    margin: 2px;
+    height: 90px;
+    display:inline-block;
+
+}
+
+    div.employeeBox div.userImageBox{
+        text-align:center;
+        width: 80px;
+        max-height: 80px;
+        float: left;
+        margin-right: 5px;
+    }
+
+        div.employeeBox div.userImageBox img{
+            max-width: 80px;
+            max-height: 80px;
+        }
+
+    div.employeeBox div.userName{
+        font-size: 20px;
+        font-weight: bold;
+        overflow: hidden;
+        text-align:left;
+    }
+}

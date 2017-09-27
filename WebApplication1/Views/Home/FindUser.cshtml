@@ -1,0 +1,38 @@
+﻿@model WebApplication1.Models.FindUserViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="main"class="splash">
+    <div class="filterControls">
+        <input type="text" id="filterInput" onkeyup="filterUsers()" placeholder="Search for names.." title="Type in a name" ondragover="event.preventDefault ? event.preventDefault() : event.returnValue = false">
+    </div>
+    @foreach (var employee in Model.Employees)
+    {
+        <div class="employeeBox" data-username="@(employee.FirstName + " " + employee.LastName)">
+            <div class="userImageBox"><img src="~/Content/Images/iconmonstr-user-29-240.png" /></div>
+            <div class="userName">@(employee.FirstName + " " + employee.LastName)</div>
+        </div>
+
+    }
+        
+</div>
+
+<script>
+    function filterUsers() {
+        var input = document.getElementById("filterInput");
+        var filter = input.value.toUpperCase();
+        var usersWrapper = document.getElementById("main");
+        var userboxes = usersWrapper.getElementsByClassName("employeeBox");
+        for (var i = 0; i < userboxes.length; i++) {
+            var box = userboxes[i];
+            var name = box.getAttribute("data-username");
+            if (name.toUpperCase().indexOf(filter) > -1) {
+                box.style.display = "";
+            } else {
+                box.style.display = "none";
+            }
+        }
+    }
+</script>

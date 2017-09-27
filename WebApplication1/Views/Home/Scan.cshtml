@@ -2,28 +2,15 @@
     ViewBag.Title = "Home Page";
 }
 
-<style>
-    #container {
-        margin: 0px auto;
-        width: 500px;
-        height: 375px;
-        border: 10px #333 solid;
-    }
-
-    #videoElement {
-        width: 500px;
-        height: 375px;
-        background-color: #666;
-    }
-</style>
 
 <div class="splash">
         <div id="container">
         <video autoplay="true" id="videoElement"></video>
     </div>
+    <button class="btn-lg btn btn-success scanbutton" onclick="scanForCode()">SCAN NOW</button>
 </div>
 
-<button class="btn-group-lg" onclick="scanForCode()">SCAN</button>
+
 
 <script>
     
@@ -41,13 +28,18 @@
 
     function scanForCode() {
         startTime = new Date().getTime();
+        $(".scanbutton").hide();
         var interval = setInterval(function () {
             if (new Date().getTime() - startTime > 60000) {
                 clearInterval(interval);
+                $(".scanbutton").show();
                 return;
             }
             readCam();
         }, 500);
+            
+
+        
     }
 
     function readCam() {

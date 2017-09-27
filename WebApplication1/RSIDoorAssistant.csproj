@@ -181,16 +181,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\KioskViewModels.cs" />
+    <Compile Include="Models\KioskModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\MockUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\iconmonstr-calendar-6-240.png" />
+    <Content Include="Content\Images\iconmonstr-info-6-240.png" />
     <Content Include="Content\Images\iconmonstr-qr-code-3-240.png" />
     <Content Include="Content\Images\iconmonstr-user-29-240.png" />
     <Content Include="Content\Images\RSILogo.jpg" />
@@ -248,6 +252,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\WhatNext.cshtml" />
     <Content Include="Views\Home\Scan.cshtml" />
+    <Content Include="Views\Home\Appointment.cshtml" />
+    <Content Include="Views\Home\FindUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
