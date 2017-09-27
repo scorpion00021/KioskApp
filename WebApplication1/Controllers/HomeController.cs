@@ -68,33 +68,19 @@ namespace WebApplication1.Controllers
             if (result != "")
             {
                 Console.WriteLine(result);
+                //determine if QR code is valid HERE
                 return Json(new { success = true, responseText = result }, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new { success = false, responseText = "we just failin stuff for now" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, responseText = "NO QR FOUND" }, JsonRequestBehavior.AllowGet);
         }
 
         private string Decode(Bitmap bitmap, IList<BarcodeFormat> possibleFormats)
         {
-            /*resultPoints.Clear();
-            lastResults.Clear();
-            txtContent.Text = String.Empty;*/
-
-            //IList<Result> results = null;
-            //var previousFormats = barcodeReader.Options.PossibleFormats;
             if (possibleFormats != null)
                 barcodeReader.Options.PossibleFormats = possibleFormats;
 
             var result = barcodeReader.Decode(bitmap);
-            /*if (result != null)
-            {
-                if (results == null)
-                {
-                    results = new List<Result>();
-                }
-                results.Add(result);
-            }*/
-
             if (result != null)
             {
                 return result.Text;
@@ -103,25 +89,6 @@ namespace WebApplication1.Controllers
             {
                 return "";
             }
-            
-
-            //barcodeReader.Options.PossibleFormats = previousFormats;  //?
-
-            /*if (results == null)
-            {
-                Console.WriteLine("found nothin");
-                return null;
-            }
-
-            else
-            {
-                foreach (var thisresult in results)
-                {
-                    Console.WriteLine("****found one!****");
-                    Console.WriteLine(thisresult.Text);
-                }
-                return results;
-            }*/
         }
     }
 }
