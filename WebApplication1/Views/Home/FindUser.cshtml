@@ -8,18 +8,56 @@
     <div class="filterControls">
         <input type="text" id="filterInput" onkeyup="filterUsers()" placeholder="Search for names.." title="Type in a name" ondragover="event.preventDefault ? event.preventDefault() : event.returnValue = false">
     </div>
-    @foreach (var employee in Model.Employees)
-    {
-        <div class="employeeBox" data-username="@(employee.FirstName + " " + employee.LastName)">
-            <div class="userImageBox"><img src="~/Content/Images/iconmonstr-user-29-240.png" /></div>
-            <div class="userName">@(employee.FirstName + " " + employee.LastName)</div>
-        </div>
+        @foreach (var employee in Model.Employees)
+        {
+            <div class="employeeBox" data-toggle="modal" data-target="#displayEmployeeModal" data-username=@(employee.FirstName + " " + employee.LastName) data-userid=@employee.Id>
+                <div class="userName">@(employee.FirstName + " " + employee.LastName)</div>
+                
+            </div>
 
-    }
-        
-</div>
+        }
+    </div>
+
+
+@using (Html.BeginForm("MessageUser", "Home", FormMethod.Post))
+{
+    <div class="modal fade" id="displayEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="displayEmployeeModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Actions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <div>
+                        <input type="hidden" value="" id="modalUserId" name="userId" />
+                        <textarea name="message" cols="300" rows="15"></textarea>
+                    </div>
+                    <input type="submit" value="Send Message" class="btn-primary btn"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 <script>
+    $(function () {
+        $('#displayEmployeeModal').on('show.bs.modal', function (event) {
+            console.log("test");
+            var button = $(event.relatedTarget);
+            var userid = button.data('userid');
+            var username = button.data('username');
+            var modal = $(this);
+            modal.find('#modal-title').text('Actions for ' + username);
+            modal.find('#modalUserId').val(userid);
+        });
+    });
+
     function filterUsers() {
         var input = document.getElementById("filterInput");
         var filter = input.value.toUpperCase();
@@ -34,5 +72,7 @@
                 box.style.display = "none";
             }
         }
-    }
+    };
+
+    
 </script>
