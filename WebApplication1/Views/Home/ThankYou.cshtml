@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="splash">
+    <h1>Thank You</h1>
+    <span>Someone will be along shortly to greet you!</span>
+
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            window.location.href = "@Url.Action("Index", "Home")";
+        }, 10000);
+    });
+</script>

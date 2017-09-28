@@ -14,70 +14,70 @@ namespace WebApplication1.Utilities
             {
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("429298f0-48a6-426c-8d46-a5413c130a1b"),
                     FirstName = "Richard",
                     LastName = "OConnell",
                     Email = "richard.oconnell@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("bf19a6c8-bc2a-47a9-9427-7792301f01df"),
                     FirstName = "Chris",
                     LastName = "Larsen",
                     Email = "chris.larsen@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("34f48f9d-47e1-41f7-b3b4-ebdf98db6cb3"),
                     FirstName = "Scott",
                     LastName = "Monnig",
                     Email = "scott.monnig@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("04e51d5b-6fc5-486b-b38c-9f7ab5de64b1"),
                     FirstName = "Vanessa",
                     LastName = "Soro",
                     Email = "vanessa.soro@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("5d230673-5cd3-4c29-a8d0-befbc4f6d740"),
                     FirstName = "Tony",
                     LastName = "Robinson",
                     Email = "tony.robinson@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("02b27587-3547-4c68-a508-ac01a1f0600d"),
                     FirstName = "Samanta",
                     LastName = "Balasamy",
                     Email = "samanta.balasamy@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("3a6063a4-9e38-452c-88f1-2294dd0d1738"),
                     FirstName = "Kyle",
                     LastName = "Conoly",
                     Email = "kyle.conoly@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("3bc39d91-4d59-4e9a-9615-fddfa48e6a81"),
                     FirstName = "Sean",
                     LastName = "Free",
                     Email = "sean.free@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("414d48e2-c9ee-4191-bed1-7060dbaa2bf6"),
                     FirstName = "Josh",
                     LastName = "McGinnis",
                     Email = "josh.mcginnis@ruralsourcing.com"
                 },
                 new Employee
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("a3a40477-117d-4f40-9ba4-1f2a3e23caca"),
                     FirstName = "Chris",
                     LastName = "Grant",
                     Email = "chris.grant@ruralsourcing.com"

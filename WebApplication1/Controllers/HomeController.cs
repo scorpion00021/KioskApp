@@ -92,6 +92,26 @@ namespace WebApplication1.Controllers
             return Json(new { success = false, responseText = "NO QR FOUND" }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult SendMessage(string userId, string message)
+        {
+            Guid userid = Guid.Parse(userId);
+            //do lookup on user account and @ them at beginnning of slack message.
+            Employee targetemployee = employees.Where(x => x.Id == userid).FirstOrDefault(); 
+
+            SlackClient slack = new SlackClient("https://hooks.slack.com/services/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");
+            string newmessage = "<!channel> Door Alert for " + targetemployee.FirstName + " " + targetemployee.LastName + ": ```" + message + "```";
+            slack.PostMessage(newmessage);
+
+            return RedirectToAction("ThankYou");
+        }
+
+        public ActionResult ThankYou()
+        {
+
+            return View();
+        }
+
         private string Decode(Bitmap bitmap, IList<BarcodeFormat> possibleFormats)
         {
             if (possibleFormats != null)
