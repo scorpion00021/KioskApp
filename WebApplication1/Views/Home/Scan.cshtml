@@ -2,8 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
+<div class="alert alert-danger stick-top" style="display:none">
+    Placeholder
+</div>
 
 <div class="splash">
+        <h2>Scan QR code for entry</h2>
         <div id="container">
         <video autoplay="true" id="videoElement"></video>
     </div>
@@ -76,6 +80,12 @@
             traditional: true,
             success: function (response) {
                 console.log(response.responseText);
+                if (response.success) {
+                    window.location.href = "/Home/WelcomeBack";
+                } else if (response.foundQR) {
+                    $(".stick-top").show();
+                    $(".stick-top").text(response.responseText);
+                }
             },
             error: function (xhr) {
                 console.log('An error occured while processing your request.')

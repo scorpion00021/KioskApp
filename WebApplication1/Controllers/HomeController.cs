@@ -31,6 +31,7 @@ namespace WebApplication1.Controllers
         };
 
         private List<Employee> employees = MockUtilities.GenerateMockEmployeeList();
+        private List<QRToken> QRTokens = MockUtilities.GenerateQRTokens();
 
         public ActionResult Index()
         {
@@ -84,12 +85,16 @@ namespace WebApplication1.Controllers
             var result = Decode(bitImage, null);
             if (result != "")
             {
-                Console.WriteLine(result);
                 //determine if QR code is valid HERE
-                return Json(new { success = true, responseText = result }, JsonRequestBehavior.AllowGet);
+                if(QRTokens.Where(x => x.Value == result && x.Expiration > DateTime.Now).Any())
+                {
+                    //LOGIC TO OPEN DOOR
+                    return Json(new { success = true, responseText = "QR VERIFIED! " + result }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { success = false, foundQR = true, responseText = "Invalid QR: " + result }, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new { success = false, responseText = "NO QR FOUND" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, foundQR = false, responseText = "NO QR FOUND" }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -98,17 +103,21 @@ namespace WebApplication1.Controllers
             Guid userid = Guid.Parse(userId);
             //do lookup on user account and @ them at beginnning of slack message.
             Employee targetemployee = employees.Where(x => x.Id == userid).FirstOrDefault(); 
-
+            
             SlackClient slack = new SlackClient("https://hooks.slack.com/services/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");
             string newmessage = "<!channel> Door Alert for " + targetemployee.FirstName + " " + targetemployee.LastName + ": ```" + message + "```";
             slack.PostMessage(newmessage);
-
+            
             return RedirectToAction("ThankYou");
         }
 
         public ActionResult ThankYou()
         {
+            return View();
+        }
 
+        public ActionResult WelcomeBack()
+        {
             return View();
         }
 

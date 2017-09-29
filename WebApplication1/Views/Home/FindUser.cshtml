@@ -10,7 +10,8 @@
     </div>
         @foreach (var employee in Model.Employees)
         {
-            <div class="employeeBox" data-toggle="modal" data-target="#displayEmployeeModal" data-username=@(employee.FirstName + " " + employee.LastName) data-userid=@employee.Id>
+
+            <div class="employeeBox" data-toggle="modal" data-target="#displayEmployeeModal" data-username="@(employee.FirstName + " " + employee.LastName)" data-userid=@employee.Id>
                 <div class="userName">@(employee.FirstName + " " + employee.LastName)</div>
                 
             </div>

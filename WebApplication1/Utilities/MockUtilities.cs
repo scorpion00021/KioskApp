@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using WebApplication1.Models;
@@ -85,6 +86,22 @@ namespace WebApplication1.Utilities
             };
 
             return Employees;
+        }
+
+        public static List<QRToken> GenerateQRTokens()
+        {
+            List<QRToken> QRTokens = new List<QRToken>
+            {
+                new QRToken
+                {
+                    Id = Guid.Parse("90c11d2b-da60-40db-948d-19092eb2bb4b"),
+                    Approver = Guid.Parse("04e51d5b-6fc5-486b-b38c-9f7ab5de64b1"),
+                    Expiration = DateTime.ParseExact("12/25/2018", "MM/dd/yyyy", CultureInfo.InvariantCulture),
+                    Value = "d879102e-df77-419a-8e00-dea53c3008d6",
+                    VisitorName = "Bill Visitor"
+                }
+            };
+            return QRTokens;
         }
     }
 }
